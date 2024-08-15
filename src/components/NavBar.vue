@@ -1,10 +1,20 @@
 <template>
-  <nav class>
-    <div class="relative mx-auto max-w-7xl px-4 py-8 flex justify-between">
-      <div class="text-2xl font-bold font-mono">DBKeys</div>
+  <nav class="border-b border-gray-300 mb-4">
+    <div class="mx-auto max-w-7xl px-4 py-4 flex justify-between">
+      <div
+        class="text-2xl font-bold font-mono text-sky-500 select-none hover:cursor-pointer"
+      >
+        DKeys
+      </div>
       <div class="flex gap-4">
         <div>
-          <el-button>+ 连接设备</el-button>
+          <el-button
+            :type="conn.isConnection ? 'danger' : 'primary'"
+            @click="onClick"
+            >{{
+              conn.isConnection === false ? "+ 连接设备" : "断开设备"
+            }}</el-button
+          >
         </div>
         <div class="border-l-2 border-gray-400 pl-4">
           <el-switch v-model="isDark">
@@ -55,9 +65,44 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
+import { closeSerial, connectSerial, getConfig } from "@/assets/scripts/serial";
+import { useConnectionStore } from "@/stores/connection";
 
 const isDark = ref(false);
+
+const conn = useConnectionStore();
+
+function onClick() {
+  if (conn.isConnection) disConnect();
+  else connect();
+}
+
+async function connect() {
+  let success = await connectSerial();
+
+  if (success === true) {
+    let res = await getConfig();
+    if (res !== null) {
+      conn.setConfig(res);
+      conn.setIsConnection(true);
+    }
+  }
+}
+
+async function disConnect() {
+  closeSerial();
+  conn.setConfig([]);
+  conn.setIsConnection(false);
+}
+
+onMounted(() => {
+  navigator.serial.addEventListener("disconnect", disConnect);
+});
+
+onUnmounted(() => {
+  navigator.serial.removeEventListener("disconnect", disConnect);
+});
 </script>
 
 <style scoped></style>
