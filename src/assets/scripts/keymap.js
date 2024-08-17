@@ -57,6 +57,10 @@ export function getName(keycode) {
     res = keymaps.get(keycode);
   }
 
+  if (res === undefined) {
+    throw new Error(`${keycode} not found in keymaps.`);
+  }
+
   return res;
 }
 
@@ -90,24 +94,12 @@ export function getKeyCode(name) {
 
 export const mediaOptions = [
   {
-    label: "Record",
-    value: 0xb2,
-  },
-  {
-    label: "快进",
-    value: 0xb3,
-  },
-  {
-    label: "倒带",
-    value: 0xb4,
-  },
-  {
-    label: "下一个",
-    value: 0xb5,
-  },
-  {
-    label: "上一个",
+    label: "上一首",
     value: 0xb6,
+  },
+  {
+    label: "下一首",
+    value: 0xb5,
   },
   {
     label: "静音",
@@ -122,8 +114,24 @@ export const mediaOptions = [
     value: 0xea,
   },
   {
+    label: "亮度+",
+    value: 0x6f,
+  },
+  {
+    label: "亮度-",
+    value: 0x70,
+  },
+  {
     label: "计算器",
     value: 0x192,
+  },
+  {
+    label: "文件管理器",
+    value: 0x194,
+  },
+  {
+    label: "浏览器",
+    value: 0x223,
   },
 ];
 

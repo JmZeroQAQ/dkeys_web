@@ -116,6 +116,14 @@ function updateConfig() {
   console.log(updateConfig);
 
   sendMessage(stringToUintArray8(updateConfig));
+
+  ElNotification({
+    title: "Success",
+    message: "修改成功",
+    type: "success",
+    position: "bottom-right",
+    duration: 3000,
+  });
 }
 </script>
 

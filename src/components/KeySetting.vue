@@ -7,7 +7,7 @@
         <el-radio :value="0">绑定组合键</el-radio>
         <el-radio :value="1">媒体按键</el-radio>
         <el-radio :value="2">鼠标按键</el-radio>
-        <el-radio :value="3">文本模式</el-radio>
+        <el-radio :value="3">一键密码</el-radio>
       </el-radio-group>
     </div>
 
@@ -41,8 +41,11 @@
       </el-select>
       <el-input
         v-show="mode === 3"
+        show-password
+        maxlength="20"
+        show-word-limit
         v-model="text"
-        placeholder="输入文本"
+        placeholder="输入密码"
         size="large"
       />
     </div>
@@ -104,29 +107,30 @@ onMounted(() => {
         if (i === start) str = getName(conn.config[i]);
         else str += ` + ${getName(conn.config[i])}`;
       }
+
       keySet.value = str;
     } else if (mode.value === keyMode.MEDIAL) {
-      let upper = conn.config[start];
-      let lower = conn.config[start + 1];
-      let keyCode = (upper << 8) + lower;
+      const upper = conn.config[start];
+      const lower = conn.config[start + 1];
+      const keyCode = (upper << 8) + lower;
 
       mediaKey.value = keyCode;
     } else if (mode.value === keyMode.MOUSE) {
-      let keyCode = conn.config[start];
+      const keyCode = conn.config[start];
 
       mouseKey.value = keyCode;
     } else if (mode.value === keyMode.TEXT) {
-      let textLen = 0;
+      let textEnd = 0;
 
       // Fix:
       for (let i = start; i < start + 21; i++) {
         if (conn.config[i] === 0xff) {
-          textLen = i;
+          textEnd = i;
           break;
         }
       }
 
-      const txt = conn.config.slice(start, textLen);
+      const txt = conn.config.slice(start, textEnd);
       const decoder = new TextDecoder();
       text.value = decoder.decode(new Uint8Array(txt));
     }
@@ -145,6 +149,8 @@ function updateConfig() {
       const keyCode = getKeyCode(keyList[i]);
       uConfig += constructConfig(start + i, keyCode);
     }
+
+    uConfig += constructConfig(start + keyList.length, 0xff);
   } else if (mode.value === keyMode.MEDIAL) {
     let upper = mediaKey.value >> 8;
     let lower = mediaKey.value & (2 ** 8 - 1);
@@ -167,6 +173,14 @@ function updateConfig() {
   uConfig += constructConfig(233, 1);
   console.log(uConfig);
   sendMessage(stringToUintArray8(uConfig));
+
+  ElNotification({
+    title: "Success",
+    message: "修改成功",
+    type: "success",
+    position: "bottom-right",
+    duration: 3000,
+  });
 }
 </script>
 

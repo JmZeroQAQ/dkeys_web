@@ -87,6 +87,14 @@ async function connect() {
       conn.setConfig(res);
       conn.setIsConnection(true);
     }
+  } else {
+    ElNotification({
+      title: "Error",
+      message: "连接失败，请检查端口是否被占用",
+      type: "error",
+      position: "bottom-right",
+      duration: 5000,
+    });
   }
 }
 

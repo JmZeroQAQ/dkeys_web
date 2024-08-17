@@ -1,6 +1,6 @@
 <template>
   <div
-    class="outline-none h-10 m-auto px-3 flex items-center justify-between rounded-lg border border-[#DCDFE6] focus:border-[#409EFF] bg-[#f5f7fa] select-none hover:cursor-pointer"
+    class="outline-none h-10 m-auto px-3 flex items-center justify-between rounded border border-[#DCDFE6] focus:border-[#409EFF] bg-white select-none hover:cursor-pointer"
     @click="onClick"
     @blur="onBlur"
     @keydown.prevent.stop="onKeydown"
@@ -31,7 +31,7 @@ let defaultValue = "";
 
 function onKeydown(e) {
   if (e.repeat) return;
-  if (keySet.value.split("+").length > 4) return;
+  if (keySet.value.split("+").length > 5) return;
 
   let keyName = transformName(e.key);
   if (keySet.value === focusText) keySet.value = keyName;
@@ -40,11 +40,12 @@ function onKeydown(e) {
 
 function onClick() {
   defaultValue = keySet.value;
+  if (keySet.value === "Meta") return;
   keySet.value = focusText;
 }
 
 function onBlur() {
-  if (keySet.value === "按键盘输入组合键") keySet.value = defaultValue;
+  if (keySet.value === focusText) keySet.value = defaultValue;
   if (keySet.value === "") keySet.value = "点击绑定组合键";
 }
 </script>

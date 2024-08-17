@@ -50,6 +50,7 @@ export async function closeSerial() {
 }
 
 export async function sendMessage(data) {
+  
   await serialWriter.write(data);
 }
 
@@ -78,6 +79,10 @@ export async function getConfig() {
 }
 
 export function constructConfig(idx, value) {
+  if(typeof value !== "number") {
+    console.log("Fatal: in function constructConfig value is not a number.");
+  
+  }
   return `{${idx}: ${value}}`;
 }
 
