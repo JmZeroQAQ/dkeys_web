@@ -53,9 +53,9 @@
     <hr class="mt-4" />
     <div class="flex mt-4 justify-between">
       <div>
-        <el-button>快速切换</el-button>
-        <el-button>一键复制</el-button>
-        <el-button>一键粘贴</el-button>
+        <el-button type="success">快速切换</el-button>
+        <el-button type="success">一键复制</el-button>
+        <el-button type="success">一键粘贴</el-button>
       </div>
       <div>
         <el-button @click="updateConfig" type="primary">应用设置</el-button>

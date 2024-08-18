@@ -1,9 +1,9 @@
 <template>
   <header>
-    <NavBar></NavBar>
+    <NavBar />
   </header>
 
-  <main class="max-w-5xl mx-auto px-2" v-if="conn.isConnection">
+  <main class="max-w-5xl mx-auto px-2 mt-20" v-if="conn.isConnection">
     <DeviceInfo />
     <RGBSetting />
     <KeySetting :idx="key2Mode">
@@ -19,11 +19,15 @@
   </main>
 
   <div
-    class="text-center mt-72 text-2xl text-sky-400 font-bold"
+    class="h-screen flex items-center justify-center text-2xl text-sky-400 font-bold"
     v-if="conn.isConnection === false"
   >
-    设备未连接
+    <div>设备未连接</div>
   </div>
+
+  <footer>
+    <SiteFooter />
+  </footer>
 </template>
 
 <script setup>
@@ -35,6 +39,7 @@ import KeySetting from "@/components/KeySetting.vue";
 import { useConnectionStore } from "@/stores/connection";
 import { configIdx } from "@/assets/scripts/configIdx";
 import { ref } from "vue";
+import SiteFooter from "@/components/SiteFooter.vue";
 
 const key1Mode = ref(configIdx.KEY1_MODE);
 const key2Mode = ref(configIdx.KEY2_MODE);

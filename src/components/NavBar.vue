@@ -1,5 +1,5 @@
 <template>
-  <nav class="border-b border-gray-300 mb-4">
+  <nav class="fixed z-50 left-0 top-0 bg-white w-full border-b border-gray-300">
     <div class="mx-auto max-w-7xl px-4 py-4 flex justify-between">
       <div
         class="text-2xl font-bold font-mono text-sky-500 select-none hover:cursor-pointer"
