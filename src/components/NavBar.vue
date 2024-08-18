@@ -1,5 +1,7 @@
 <template>
-  <nav class="fixed z-50 left-0 top-0 bg-white w-full border-b border-gray-300">
+  <nav
+    class="fixed z-50 left-0 top-0 bg-white dark:bg-slate-800 w-full border-b border-gray-300 dark:border-gray-600"
+  >
     <div class="mx-auto max-w-7xl px-4 py-4 flex justify-between">
       <div
         class="text-2xl font-bold font-mono text-sky-500 select-none hover:cursor-pointer"
@@ -16,10 +18,14 @@
             }}</el-button
           >
         </div>
-        <div class="border-l-2 border-gray-400 pl-4">
-          <el-switch v-model="isDark">
+        <div class="border-l-2 border-gray-400 dark:border-sky-600 pl-4">
+          <el-switch v-model="isDark" style="--el-switch-on-color: #191e24">
             <template #active-action>
-              <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                class="bg-slate-900 border-none rounded-full"
+              >
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"

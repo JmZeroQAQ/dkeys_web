@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-2xl bg-white shadow-sm p-8 mb-10">
+  <div class="rounded-2xl bg-white dark:bg-slate-800 shadow-sm p-8 mb-10">
     <h2 class="font-bold text-xl select-none">灯光控制</h2>
     <div class="flex justify-center py-2">
       <el-radio-group v-model="mode">

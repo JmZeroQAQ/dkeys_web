@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-2xl bg-white p-8 mb-10">
+  <div class="rounded-2xl bg-white dark:bg-slate-800 p-8 mb-10">
     <slot name="title"></slot>
 
     <div class="flex justify-center py-2">

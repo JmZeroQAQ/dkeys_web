@@ -1,6 +1,6 @@
 <template>
   <div
-    class="outline-none h-10 m-auto px-3 flex items-center justify-between rounded border border-[#DCDFE6] focus:border-[#409EFF] bg-white select-none hover:cursor-pointer"
+    class="outline-none h-10 m-auto px-3 flex items-center justify-between rounded border border-[#DCDFE6] focus:border-[#409EFF] bg-white dark:bg-slate-800 select-none hover:cursor-pointer"
     @click="onClick"
     @blur="onBlur"
     @keydown.prevent.stop="onKeydown"
