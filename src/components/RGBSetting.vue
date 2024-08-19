@@ -41,9 +41,32 @@
     <hr class="mt-10 dark:border-gray-400 mb-6" />
     <div class="flex mt-4 justify-between">
       <div>
-        <el-button type="info">关闭灯光</el-button>
-        <el-button type="success">呼吸推荐</el-button>
-        <el-button type="success">渐变推荐</el-button>
+        <el-button
+          type="info"
+          @click="() => onClick({ mode: 0, brightness: 0 })"
+          >关闭灯光</el-button
+        >
+        <el-button
+          type="success"
+          @click="
+            () =>
+              onClick({
+                mode: 1,
+                color: '#2dc1db',
+                brightness: 255,
+                step: 4,
+                interval: 40,
+              })
+          "
+          >呼吸推荐</el-button
+        >
+        <el-button
+          type="success"
+          @click="
+            () => onClick({ mode: 2, brightness: 255, step: 2, interval: 55 })
+          "
+          >渐变推荐</el-button
+        >
       </div>
       <div>
         <el-button @click="updateConfig" type="primary">应用设置</el-button>
@@ -87,6 +110,14 @@ onMounted(() => {
     console.log(color.value);
   }
 });
+
+function onClick(obj) {
+  if ("mode" in obj) mode.value = obj.mode;
+  if ("color" in obj) color.value = obj.color;
+  if ("brightness" in obj) brightness.value = obj.brightness;
+  if ("step" in obj) step.value = obj.step;
+  if ("interval" in obj) interval.value = obj.interval;
+}
 
 function getRGB() {
   const R = parseInt(color.value.substring(1, 3), 16);

@@ -39,15 +39,15 @@ onMounted(() => {
   }
 });
 
-function onClick() {
-  console.log("click");
-  ElNotification({
-    title: "Success",
-    message: "This is a success message",
-    type: "success",
-    duration: 3000,
-  });
-}
+// function onClick() {
+//   console.log("click");
+//   ElNotification({
+//     title: "Success",
+//     message: "This is a success message",
+//     type: "success",
+//     duration: 3000,
+//   });
+// }
 </script>
 
 <style scoped></style>

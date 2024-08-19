@@ -53,11 +53,21 @@
     <hr class="mt-10 dark:border-gray-400 mb-6" />
     <div class="flex mt-4 justify-between">
       <div>
-        <el-button type="success">快速切换</el-button>
-        <el-button type="success">一键复制</el-button>
-        <el-button type="success">一键粘贴</el-button>
-        <el-button type="success">撤销</el-button>
-        <el-button type="success">锁屏</el-button>
+        <el-button type="success" @click="() => recommendConfig('Alt + Tab')"
+          >快速切换</el-button
+        >
+        <el-button type="success" @click="() => recommendConfig('Ctrl + C')"
+          >一键复制</el-button
+        >
+        <el-button type="success" @click="() => recommendConfig('Ctrl + V')"
+          >一键粘贴</el-button
+        >
+        <el-button type="success" @click="() => recommendConfig('Ctrl + Z')"
+          >撤销</el-button
+        >
+        <el-button type="success" @click="() => recommendConfig('Meta + L')"
+          >锁屏</el-button
+        >
       </div>
       <div>
         <el-button @click="updateConfig" type="primary">应用设置</el-button>
@@ -138,6 +148,10 @@ onMounted(() => {
     }
   }
 });
+
+function recommendConfig(v) {
+  keySet.value = v;
+}
 
 function updateConfig() {
   const modeIdx = props.idx;
