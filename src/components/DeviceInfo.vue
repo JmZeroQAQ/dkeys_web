@@ -8,12 +8,14 @@
         <div class="text-gray-500 dark:text-gray-400 font-bold">设备名称</div>
         <div class="font-mono">DKeys</div>
       </div>
-      <div class="flex grow items-center justify-between px-4">
+      <div
+        class="flex grow items-center justify-between px-4 dark:border-gray-400"
+      >
         <div class="text-gray-500 dark:text-gray-400 font-bold">固件版本</div>
         <div class="font-mono">V{{ version }}</div>
       </div>
     </div>
-    <hr />
+    <hr class="dark:border-gray-400 mt-10" />
     <div class="mt-4 flex flex-row-reverse gap-4">
       <!-- <el-button @Click="onClick">测试</el-button> -->
     </div>

@@ -50,7 +50,7 @@
       />
     </div>
 
-    <hr class="mt-4" />
+    <hr class="mt-10 dark:border-gray-400 mb-6" />
     <div class="flex mt-4 justify-between">
       <div>
         <el-button type="success">快速切换</el-button>
