@@ -150,6 +150,7 @@ onMounted(() => {
 });
 
 function recommendConfig(v) {
+  mode.value = 0;
   keySet.value = v;
 }
 

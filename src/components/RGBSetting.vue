@@ -54,8 +54,8 @@
                 mode: 1,
                 color: '#2dc1db',
                 brightness: 255,
-                step: 4,
-                interval: 40,
+                step: 6,
+                interval: 30,
               })
           "
           >呼吸推荐</el-button
