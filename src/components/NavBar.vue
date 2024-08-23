@@ -6,7 +6,7 @@
       <div
         class="text-2xl font-bold font-mono text-sky-500 select-none hover:cursor-pointer"
       >
-        DKeys
+        凉界
       </div>
       <div class="flex gap-4">
         <div>

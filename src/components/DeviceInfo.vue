@@ -6,7 +6,7 @@
     <div class="flex justify-between py-8 divide-x-2 text-lg">
       <div class="flex grow items-center justify-between px-4">
         <div class="text-gray-500 dark:text-gray-400 font-bold">设备名称</div>
-        <div class="font-mono">DKeys</div>
+        <div class="font-mono">凉界双键</div>
       </div>
       <div
         class="flex grow items-center justify-between px-4 dark:border-gray-400"
