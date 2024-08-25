@@ -41,8 +41,6 @@ const Mac = [
 ];
 
 export function getKeyPreset() {
-  console.log(navigator.userAgent);
-
   if (navigator.userAgent.indexOf("Windows") !== -1) {
     return Win;
   } else if (navigator.userAgent.indexOf("Mac") !== -1) {

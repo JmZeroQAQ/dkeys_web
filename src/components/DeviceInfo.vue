@@ -16,19 +16,26 @@
       </div>
     </div>
     <hr class="dark:border-gray-400 mt-8" />
-    <!-- <div class="mt-4 flex flex-row-reverse gap-4">
-      <el-popconfirm
-        width="220"
-        confirm-button-text="确定"
-        cancel-button-text="取消"
-        hide-icon
-        title="确定恢复出厂设置吗？"
-      >
-        <template #reference>
-          <el-button type="danger">恢复出厂设置</el-button>
-        </template>
-      </el-popconfirm>
-    </div> -->
+    <div class="mt-4 flex justify-between">
+      <div>
+        <el-popconfirm
+          @confirm="onConfirm"
+          width="220"
+          confirm-button-text="确定"
+          cancel-button-text="取消"
+          hide-icon
+          title="确定恢复出厂设置吗？"
+        >
+          <template #reference>
+            <el-button type="danger" plain>恢复出厂设置</el-button>
+          </template>
+        </el-popconfirm>
+      </div>
+
+      <div>
+        <el-button type="info">使用说明</el-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,6 +43,11 @@
 import { ref, onMounted } from "vue";
 import { useConnectionStore } from "@/stores/connection";
 import { configIdx } from "@/assets/scripts/configIdx";
+import {
+  constructConfig,
+  sendMessage,
+  stringToUintArray8,
+} from "@/assets/scripts/serial";
 
 const version = ref("0.0.0");
 
@@ -49,15 +61,19 @@ onMounted(() => {
   }
 });
 
-// function onClick() {
-//   console.log("click");
-//   ElNotification({
-//     title: "Success",
-//     message: "This is a success message",
-//     type: "success",
-//     duration: 3000,
-//   });
-// }
+function onConfirm() {
+  let uConfig = "";
+  uConfig = constructConfig(configIdx.DEVICE_VERSION, 2);
+  uConfig += constructConfig(233, 1);
+  sendMessage(stringToUintArray8(uConfig));
+
+  ElNotification({
+    title: "Success",
+    message: "恢复出厂设置成功，请重新插拔键盘",
+    type: "success",
+    duration: 3000,
+  });
+}
 </script>
 
 <style scoped></style>
