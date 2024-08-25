@@ -71,6 +71,7 @@ function onConfirm() {
     title: "Success",
     message: "恢复出厂设置成功，请重新插拔键盘",
     type: "success",
+    position: "bottom-right",
     duration: 3000,
   });
 }
