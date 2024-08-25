@@ -13,6 +13,7 @@
           <el-button
             :type="conn.isConnection ? 'danger' : 'primary'"
             @click="onClick"
+            :disabled="isDisable"
             >{{
               conn.isConnection === false ? "+ 连接设备" : "断开设备"
             }}</el-button
@@ -28,7 +29,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { closeSerial, connectSerial, getConfig } from "@/assets/scripts/serial";
 import { useConnectionStore } from "@/stores/connection";
 import ThemeChange from "./ThemeChange.vue";
@@ -72,6 +73,15 @@ onMounted(() => {
 
 onUnmounted(() => {
   navigator.serial.removeEventListener("disconnect", disConnect);
+});
+
+const isDisable = ref(false);
+
+onMounted(() => {
+  if ("serial" in navigator === false) {
+    isDisable = true;
+    alert("当前浏览器不支持Web Serial API，请使用最新版本的Chrome或Edge浏览器");
+  }
 });
 </script>
 
