@@ -53,20 +53,12 @@
     <hr class="mt-10 dark:border-gray-400 mb-6" />
     <div class="flex mt-4 justify-between">
       <div>
-        <el-button type="success" @click="() => recommendConfig('Alt + Tab')"
-          >快速切换</el-button
-        >
-        <el-button type="success" @click="() => recommendConfig('Ctrl + C')"
-          >一键复制</el-button
-        >
-        <el-button type="success" @click="() => recommendConfig('Ctrl + V')"
-          >一键粘贴</el-button
-        >
-        <el-button type="success" @click="() => recommendConfig('Ctrl + Z')"
-          >撤销</el-button
-        >
-        <el-button type="success" @click="() => recommendConfig('Meta + L')"
-          >锁屏</el-button
+        <el-button
+          v-for="key in getKeyPreset()"
+          type="primary"
+          plain
+          @click="() => recommendConfig(key.value)"
+          >{{ key.name }}</el-button
         >
       </div>
       <div>
@@ -81,6 +73,8 @@ import { ref, onMounted } from "vue";
 import { useConnectionStore } from "@/stores/connection";
 import KeyBind from "./KeyBind.vue";
 import { keyMode } from "@/assets/scripts/configIdx";
+import { getKeyPreset } from "@/assets/scripts/keypreset";
+
 import {
   getKeyCode,
   getName,

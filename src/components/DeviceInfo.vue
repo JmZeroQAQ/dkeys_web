@@ -15,10 +15,20 @@
         <div class="font-mono">V{{ version }}</div>
       </div>
     </div>
-    <hr class="dark:border-gray-400 mt-10" />
-    <div class="mt-4 flex flex-row-reverse gap-4">
-      <!-- <el-button @Click="onClick">测试</el-button> -->
-    </div>
+    <hr class="dark:border-gray-400 mt-8" />
+    <!-- <div class="mt-4 flex flex-row-reverse gap-4">
+      <el-popconfirm
+        width="220"
+        confirm-button-text="确定"
+        cancel-button-text="取消"
+        hide-icon
+        title="确定恢复出厂设置吗？"
+      >
+        <template #reference>
+          <el-button type="danger">恢复出厂设置</el-button>
+        </template>
+      </el-popconfirm>
+    </div> -->
   </div>
 </template>
 
