@@ -19,7 +19,7 @@
   </main>
 
   <div
-    class="h-screen flex items-center justify-center text-2xl text-sky-400 font-bold"
+    class="h-screen flex items-center justify-center text-2xl text-sky-400 font-bold font-mono"
     v-if="conn.isConnection === false"
   >
     <div>设备未连接</div>
