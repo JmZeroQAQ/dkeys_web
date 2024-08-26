@@ -12,6 +12,10 @@ const Win = [
     value: "Ctrl + V",
   },
   {
+    name: "剪切",
+    value: "Ctrl + X",
+  },
+  {
     name: "全选",
     value: "Ctrl + A",
   },
@@ -31,12 +35,32 @@ const Win = [
 
 const Mac = [
   {
+    name: "窗口切换",
+    value: "Meta + Tab",
+  },
+  {
     name: "复制",
     value: "Meta + C",
   },
   {
     name: "粘贴",
     value: "Meta + V",
+  },
+  {
+    name: "剪切",
+    value: "Meta + X",
+  },
+  {
+    name: "全选",
+    value: "Meta + A",
+  },
+  {
+    name: "撤销",
+    value: "Meta + Z",
+  },
+  {
+    name: "锁屏",
+    value: "Ctrl + Meta + Q",
   },
 ];
 
