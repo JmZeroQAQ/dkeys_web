@@ -79,7 +79,7 @@ const isDisable = ref(false);
 
 onMounted(() => {
   if ("serial" in navigator === false) {
-    isDisable = true;
+    isDisable.value = true;
     alert("当前浏览器不支持Web Serial API，请使用最新版本的Chrome或Edge浏览器");
   }
 });
