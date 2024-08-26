@@ -33,7 +33,7 @@
       </div>
 
       <div>
-        <el-button type="info">使用说明</el-button>
+        <Instructions />
       </div>
     </div>
   </div>
@@ -48,6 +48,7 @@ import {
   sendMessage,
   stringToUintArray8,
 } from "@/assets/scripts/serial";
+import Instructions from "./Instructions.vue";
 
 const version = ref("0.0.0");
 
