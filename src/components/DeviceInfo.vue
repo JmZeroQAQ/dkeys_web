@@ -81,13 +81,15 @@ onMounted(() => {
       conn.config[configIdx.DEVICE_VERSION + 1]
     }.${conn.config[configIdx.DEVICE_VERSION + 2]}`;
 
-    lcounter.value =
-      (conn.config[configIdx.KEY2_COUNTER + 1] << 8) +
-      conn.config[configIdx.KEY2_COUNTER];
+    if (conn.config[configIdx.DEVICE_VERSION + 1] >= 2) {
+      lcounter.value =
+        (conn.config[configIdx.KEY2_COUNTER + 1] << 8) +
+        conn.config[configIdx.KEY2_COUNTER];
 
-    rcounter.value =
-      (conn.config[configIdx.KEY1_COUNTER + 1] << 8) +
-      conn.config[configIdx.KEY1_COUNTER];
+      rcounter.value =
+        (conn.config[configIdx.KEY1_COUNTER + 1] << 8) +
+        conn.config[configIdx.KEY1_COUNTER];
+    }
   }
 });
 
