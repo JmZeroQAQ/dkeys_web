@@ -1,7 +1,7 @@
 <template>
   <el-button type="info" @click="visible = true">使用说明</el-button>
 
-  <el-dialog v-model="visible" title="键盘使用说明 " width="64rem" center>
+  <el-dialog v-model="visible" title="键盘使用说明 " width="64rem" top="8vh">
     <div>
       <h4 class="font-bold mb-1 text-black dark:text-gray-100">功能描述：</h4>
 

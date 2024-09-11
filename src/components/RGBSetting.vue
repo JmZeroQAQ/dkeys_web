@@ -1,7 +1,7 @@
 <template>
   <div class="rounded-2xl bg-white dark:bg-slate-800 shadow-sm p-8 mb-10">
     <h2 class="font-bold text-xl select-none">灯光控制</h2>
-    <div class="flex justify-center py-2">
+    <div class="flex justify-center py-2 mb-4">
       <el-radio-group v-model="mode">
         <el-radio :value="0">固定模式</el-radio>
         <el-radio :value="1">呼吸模式</el-radio>

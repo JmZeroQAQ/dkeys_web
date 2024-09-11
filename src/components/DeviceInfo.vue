@@ -2,20 +2,39 @@
   <div
     class="rounded-2xl bg-white dark:bg-slate-800 shadow-sm p-8 mb-10 select-none"
   >
-    <h2 class="font-bold text-xl">设备信息</h2>
-    <div class="flex justify-between py-8 divide-x-2 text-lg">
-      <div class="flex grow items-center justify-between px-4">
-        <div class="text-gray-500 dark:text-gray-400 font-bold">设备名称</div>
-        <div class="font-mono">凉界双键</div>
+    <h2 class="font-bold text-xl mb-6">设备信息</h2>
+
+    <div class="flex justify-between font-bold text-sm">
+      <div class="flex basis-1/2 items-center justify-between px-4">
+        <div class="text-gray-400 dark:text-gray-400">设备名称</div>
+        <div class="font-mono text-lg text-sky-400">凉界双键</div>
       </div>
       <div
-        class="flex grow items-center justify-between px-4 dark:border-gray-400"
+        class="flex basis-1/2 items-center justify-between px-4 dark:border-gray-400"
       >
-        <div class="text-gray-500 dark:text-gray-400 font-bold">固件版本</div>
-        <div class="font-mono">V{{ version }}</div>
+        <div class="text-gray-400 dark:text-gray-400">固件版本</div>
+        <div class="font-mono text-lg text-sky-400">V{{ version }}</div>
       </div>
     </div>
-    <hr class="dark:border-gray-400 mt-8" />
+
+    <div class="flex justify-between font-bold mt-4 text-sm">
+      <div class="flex basis-1/2 items-center justify-between px-4">
+        <div class="text-gray-400 dark:text-gray-400">左键次数</div>
+        <div class="font-mono text-4xl font-bold text-violet-500">
+          {{ lcounter }}
+        </div>
+      </div>
+      <div
+        class="flex basis-1/2 items-center justify-between px-4 dark:border-gray-400"
+      >
+        <div class="text-gray-400 dark:text-gray-400">右键次数</div>
+        <div class="font-mono text-4xl font-bold text-violet-500">
+          {{ rcounter }}
+        </div>
+      </div>
+    </div>
+
+    <hr class="dark:border-gray-400 mt-6" />
     <div class="mt-4 flex justify-between">
       <div>
         <el-popconfirm
@@ -51,6 +70,8 @@ import {
 import Instructions from "./Instructions.vue";
 
 const version = ref("0.0.0");
+const lcounter = ref(0);
+const rcounter = ref(0);
 
 const conn = useConnectionStore();
 
@@ -59,6 +80,14 @@ onMounted(() => {
     version.value = `${conn.config[configIdx.DEVICE_VERSION]}.${
       conn.config[configIdx.DEVICE_VERSION + 1]
     }.${conn.config[configIdx.DEVICE_VERSION + 2]}`;
+
+    lcounter.value =
+      (conn.config[configIdx.KEY2_COUNTER + 1] << 8) +
+      conn.config[configIdx.KEY2_COUNTER];
+
+    rcounter.value =
+      (conn.config[configIdx.KEY1_COUNTER + 1] << 8) +
+      conn.config[configIdx.KEY1_COUNTER];
   }
 });
 

@@ -11,6 +11,8 @@ export const configIdx = {
   RGB_STEP: 49,
   RGB_INTERVAL: 50,
   DEVICE_VERSION: 52,
+  KEY1_COUNTER: 55,
+  KEY2_COUNTER: 57,
 };
 
 export const keyMode = {

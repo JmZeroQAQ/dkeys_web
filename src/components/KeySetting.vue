@@ -2,7 +2,7 @@
   <div class="rounded-2xl bg-white dark:bg-slate-800 p-8 mb-10">
     <slot name="title"></slot>
 
-    <div class="flex justify-center py-2">
+    <div class="flex justify-center py-2 mb-6">
       <el-radio-group v-model="mode">
         <el-radio :value="0">绑定组合键</el-radio>
         <el-radio :value="1">媒体按键</el-radio>
