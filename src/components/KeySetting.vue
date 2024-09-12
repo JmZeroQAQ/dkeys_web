@@ -54,12 +54,14 @@
     <div class="flex mt-4 justify-between">
       <div>
         <el-button
-          v-for="key in getKeyPreset()"
+          v-for="i in 6"
           type="primary"
           plain
-          @click="() => recommendConfig(key.value)"
-          >{{ key.name }}</el-button
+          @click="() => recommendConfig(keypreset[i - 1].value)"
+          >{{ keypreset[i - 1].name }}</el-button
         >
+
+        <MoreShortcutKey :keypreset="keypreset" @setkey="recommendConfig" />
       </div>
       <div>
         <el-button @click="updateConfig" type="primary">应用设置</el-button>
@@ -86,12 +88,14 @@ import {
   sendMessage,
   stringToUintArray8,
 } from "@/assets/scripts/serial";
+import MoreShortcutKey from "./MoreShortcutKey.vue";
 
 const mode = ref(0);
 const keySet = ref("点击绑定组合键");
 const mediaKey = ref();
 const text = ref("");
 const mouseKey = ref();
+const keypreset = ref(getKeyPreset());
 
 const conn = useConnectionStore();
 
@@ -182,7 +186,7 @@ function updateConfig() {
   }
 
   uConfig += constructConfig(233, 1);
-  console.log(uConfig);
+  // console.log(uConfig);
   sendMessage(stringToUintArray8(uConfig));
 
   ElNotification({

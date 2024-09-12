@@ -96,7 +96,7 @@ onMounted(() => {
 
   if (conn.isConnection) {
     const config = conn.config;
-    console.log(config);
+    // console.log(config);
 
     mode.value = config[configIdx.RGB_MODE];
     step.value = config[configIdx.RGB_STEP];
@@ -107,7 +107,7 @@ onMounted(() => {
     const B = config[configIdx.RGB_B].toString(16);
 
     color.value = `#${R}${G}${B}`;
-    console.log(color.value);
+    // console.log(color.value);
   }
 });
 
@@ -144,7 +144,7 @@ function updateConfig() {
   updateConfig += constructConfig(configIdx.RGB_B, RGB.B);
 
   updateConfig += constructConfig(233, 1);
-  console.log(updateConfig);
+  // console.log(updateConfig);
 
   sendMessage(stringToUintArray8(updateConfig));
 
