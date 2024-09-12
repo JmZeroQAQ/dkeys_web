@@ -43,6 +43,7 @@ export const keyToNameMap = new Map([
   ["ArrowDown", "Down"],
   ["ArrowLeft", "Left"],
   ["ArrowRight", "Right"],
+  ["Escape", "Esc"],
 ]);
 
 export function getName(keycode) {
@@ -124,10 +125,6 @@ export const mediaOptions = [
   {
     label: "计算器",
     value: 0x192,
-  },
-  {
-    label: "文件管理器",
-    value: 0x194,
   },
   {
     label: "浏览器",
