@@ -8,6 +8,7 @@
         <el-radio :value="1">媒体按键</el-radio>
         <el-radio :value="2">鼠标按键</el-radio>
         <el-radio :value="3">一键密码</el-radio>
+        <el-radio :value="4">迷你宏</el-radio>
       </el-radio-group>
     </div>
 
@@ -48,6 +49,7 @@
         placeholder="输入密码"
         size="large"
       />
+      <MacroSetting v-show="mode === 4" v-model="macroKeySet" />
     </div>
 
     <hr class="mt-10 dark:border-gray-400 mb-6" />
@@ -89,6 +91,7 @@ import {
   stringToUintArray8,
 } from "@/assets/scripts/serial";
 import MoreShortcutKey from "./MoreShortcutKey.vue";
+import MacroSetting from "./MacroSetting.vue";
 
 const mode = ref(0);
 const keySet = ref("点击绑定组合键");
@@ -96,6 +99,7 @@ const mediaKey = ref();
 const text = ref("");
 const mouseKey = ref();
 const keypreset = ref(getKeyPreset());
+const macroKeySet = ref(["点击绑定组合键"]);
 
 const conn = useConnectionStore();
 
@@ -143,6 +147,19 @@ onMounted(() => {
       const txt = conn.config.slice(start, textEnd);
       const decoder = new TextDecoder();
       text.value = decoder.decode(new Uint8Array(txt));
+    } else if (mode.value === keyMode.MACRO) {
+      // clear macroKeySet for data filling
+      macroKeySet.value.pop();
+      // based config to construct macroKeySet.
+      for (let i = 0; i < 4; i++) {
+        let str = "";
+        for (let j = start + 4 * i; conn.config[j] !== 0xff; j++) {
+          if (j === start + 4 * i) str = getName(conn.config[j]);
+          else str += ` + ${getName(conn.config[j])}`;
+        }
+
+        if (str.length !== 0) macroKeySet.value.push(str);
+      }
     }
   }
 });
@@ -183,6 +200,23 @@ function updateConfig() {
     }
 
     uConfig += constructConfig(start + uArray.length, 0xff);
+  } else if (mode.value === keyMode.MACRO) {
+    console.log(macroKeySet.value);
+
+    for (let i = 0; i < 4; i++) uConfig += constructConfig(start + 4 * i, 0xff);
+
+    for (const [idx, item] of macroKeySet.value.entries()) {
+      let keyList = item.split(" + ");
+      for (let i = 0; i < keyList.length; i++) {
+        const keyCode = getKeyCode(keyList[i]);
+        const pos = start + i + 4 * idx;
+        uConfig += constructConfig(pos, keyCode);
+      }
+
+      uConfig += constructConfig(start + 4 * idx + keyList.length, 0xff);
+    }
+
+    console.log(uConfig);
   }
 
   uConfig += constructConfig(233, 1);

@@ -13,6 +13,10 @@ export const configIdx = {
   DEVICE_VERSION: 52,
   KEY1_COUNTER: 55,
   KEY2_COUNTER: 57,
+  KEY1_MACRO_GAP: 59,
+  KEY2_MACRO_GAP: 60,
+  KEY1_DEBOUNCE_TIME: 61,
+  KEY2_DEBOUNCE_TIME: 62,
 };
 
 export const keyMode = {
@@ -20,4 +24,5 @@ export const keyMode = {
   MEDIAL: 1,
   MOUSE: 2,
   TEXT: 3,
+  MACRO: 4,
 };
