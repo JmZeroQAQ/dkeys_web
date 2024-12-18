@@ -1,6 +1,6 @@
 const usbVendorId = 0x1209;
 const usbProductId = 0xc550;
-const baudRate = 9600;
+const baudRate = 57600;
 
 let port;
 let serialWriter;
@@ -50,7 +50,6 @@ export async function closeSerial() {
 }
 
 export async function sendMessage(data) {
-  
   await serialWriter.write(data);
 }
 
@@ -79,9 +78,8 @@ export async function getConfig() {
 }
 
 export function constructConfig(idx, value) {
-  if(typeof value !== "number") {
+  if (typeof value !== "number") {
     console.log("Fatal: in function constructConfig value is not a number.");
-  
   }
   return `{${idx}: ${value}}`;
 }
