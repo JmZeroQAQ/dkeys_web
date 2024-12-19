@@ -16,6 +16,7 @@
         <h2 class="font-bold text-xl">右键设置</h2>
       </template>
     </KeySetting>
+    <AdvanceSetting />
   </main>
 
   <div
@@ -40,6 +41,7 @@ import { useConnectionStore } from "@/stores/connection";
 import { configIdx } from "@/assets/scripts/configIdx";
 import { ref } from "vue";
 import SiteFooter from "@/components/SiteFooter.vue";
+import AdvanceSetting from "@/components/AdvanceSetting.vue";
 
 const key1Mode = ref(configIdx.KEY1_MODE);
 const key2Mode = ref(configIdx.KEY2_MODE);

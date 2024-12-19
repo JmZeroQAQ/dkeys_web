@@ -17,6 +17,10 @@ export const configIdx = {
   KEY2_MACRO_GAP: 60,
   KEY1_DEBOUNCE_TIME: 61,
   KEY2_DEBOUNCE_TIME: 62,
+  MACRO_REPEAT_ACTIVE_TIME: 63,
+  MACRO_REPEAT_ACTIVE: 64,
+  KEY1_MACRO_LEN: 65,
+  KEY2_MACRO_LEN: 66,
 };
 
 export const keyMode = {

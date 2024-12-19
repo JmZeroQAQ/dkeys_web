@@ -8,7 +8,11 @@
         <el-radio :value="1">媒体按键</el-radio>
         <el-radio :value="2">鼠标按键</el-radio>
         <el-radio :value="3">一键密码</el-radio>
-        <el-radio :value="4">绑定宏</el-radio>
+        <el-radio
+          v-show="conn.config[configIdx.DEVICE_VERSION + 1] >= 3"
+          :value="4"
+          >绑定宏</el-radio
+        >
       </el-radio-group>
     </div>
 
@@ -76,7 +80,7 @@
 import { ref, onMounted } from "vue";
 import { useConnectionStore } from "@/stores/connection";
 import KeyBind from "./KeyBind.vue";
-import { keyMode } from "@/assets/scripts/configIdx";
+import { configIdx, keyMode } from "@/assets/scripts/configIdx";
 import { getKeyPreset } from "@/assets/scripts/keypreset";
 
 import {
@@ -201,6 +205,14 @@ function updateConfig() {
     uConfig += constructConfig(start + uArray.length, 0xff);
   } else if (mode.value === keyMode.MACRO) {
     console.log(macroKeySet.value);
+
+    // the number of macro steps.
+    uConfig += constructConfig(
+      props.idx === configIdx.KEY1_MODE
+        ? configIdx.KEY1_MACRO_LEN
+        : configIdx.KEY2_MACRO_LEN,
+      macroKeySet.value.length
+    );
 
     // Reset the starting position of each step.
     for (let i = 0; i < 4; i++) uConfig += constructConfig(start + 4 * i, 0xff);
