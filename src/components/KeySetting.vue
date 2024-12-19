@@ -8,7 +8,7 @@
         <el-radio :value="1">媒体按键</el-radio>
         <el-radio :value="2">鼠标按键</el-radio>
         <el-radio :value="3">一键密码</el-radio>
-        <el-radio :value="4">迷你宏</el-radio>
+        <el-radio :value="4">绑定宏</el-radio>
       </el-radio-group>
     </div>
 
@@ -136,7 +136,6 @@ onMounted(() => {
     } else if (mode.value === keyMode.TEXT) {
       let textEnd = 0;
 
-      // Fix:
       for (let i = start; i < start + 21; i++) {
         if (conn.config[i] === 0xff) {
           textEnd = i;
@@ -203,14 +202,17 @@ function updateConfig() {
   } else if (mode.value === keyMode.MACRO) {
     console.log(macroKeySet.value);
 
+    // Reset the starting position of each step.
     for (let i = 0; i < 4; i++) uConfig += constructConfig(start + 4 * i, 0xff);
 
     for (const [idx, item] of macroKeySet.value.entries()) {
-      let keyList = item.split(" + ");
-      for (let i = 0; i < keyList.length; i++) {
-        const keyCode = getKeyCode(keyList[i]);
-        const pos = start + i + 4 * idx;
-        uConfig += constructConfig(pos, keyCode);
+      const keyList = item.split(" + ");
+      if (keyList[0] !== "点击绑定组合键") {
+        for (let i = 0; i < keyList.length; i++) {
+          const keyCode = getKeyCode(keyList[i]);
+          const pos = start + i + 4 * idx;
+          uConfig += constructConfig(pos, keyCode);
+        }
       }
 
       uConfig += constructConfig(start + 4 * idx + keyList.length, 0xff);
