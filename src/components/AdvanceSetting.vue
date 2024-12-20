@@ -125,7 +125,7 @@ function updateConfig() {
   }
 
   updateConfig += constructConfig(233, 1);
-  console.log(updateConfig);
+  //  console.log(updateConfig);
 
   sendMessage(stringToUintArray8(updateConfig));
 

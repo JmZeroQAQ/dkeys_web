@@ -204,7 +204,7 @@ function updateConfig() {
 
     uConfig += constructConfig(start + uArray.length, 0xff);
   } else if (mode.value === keyMode.MACRO) {
-    console.log(macroKeySet.value);
+    // console.log(macroKeySet.value);
 
     // the number of macro steps.
     uConfig += constructConfig(
@@ -230,7 +230,7 @@ function updateConfig() {
       uConfig += constructConfig(start + 4 * idx + keyList.length, 0xff);
     }
 
-    console.log(uConfig);
+    // console.log(uConfig);
   }
 
   uConfig += constructConfig(233, 1);
